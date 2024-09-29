@@ -4,6 +4,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     displayGrid(size)
 
+    const squares = document.querySelectorAll('.container .square')
+    squares.forEach(square => {
+        square.addEventListener('mouseover', () => {
+            square.classList.add('painted')
+        })
+    })
+
     btn.addEventListener('click', () => {
         size = +prompt('Enter the number of squares per side of the new grid (max 100)', '')
 
