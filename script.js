@@ -7,8 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     btn.addEventListener('click', () => {
         size = +prompt('Enter the number of squares per side of the new grid (max 100)', '')
+        console.log(size)
 
-        if (isNaN(size) || size > 100) {
+        if (isNaN(size) || size > 100 || size !== parseInt(size)) {
             alert('The number entered is not valid')
         } else if (size !== 0) {
             removeGrid()
