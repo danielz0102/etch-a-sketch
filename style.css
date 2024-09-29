@@ -29,11 +29,13 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 2px solid #000;
+    margin-inline: auto;
+    width: 750px;
+    height: 750px;
 }
 
 .square {
-    height: 50px;
-    width: 50px;
     background-color: #ebe7e7;
 }
 

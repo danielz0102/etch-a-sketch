@@ -3,13 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let size = 16
 
     displayGrid(size)
-
-    const squares = document.querySelectorAll('.container .square')
-    squares.forEach(square => {
-        square.addEventListener('mouseover', () => {
-            square.classList.add('painted')
-        })
-    })
+    paintSquares()
 
     btn.addEventListener('click', () => {
         size = +prompt('Enter the number of squares per side of the new grid (max 100)', '')
@@ -19,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (size !== 0) {
             removeGrid()
             displayGrid(size)
+            paintSquares()
         }
     })
 
@@ -33,8 +28,11 @@ function displayGrid(size) {
     const container = document.querySelector('.container')
     const square = document.createElement('div')
     const row = document.createElement('div')
+    const containerSize = container.offsetWidth
 
     square.classList.add('square')
+    square.style.width = `${containerSize/size}px`
+    square.style.height = `${containerSize/size}px`
     row.classList.add('row')
 
     for (let i = 1; i <= size; i++) {
@@ -46,4 +44,13 @@ function displayGrid(size) {
         const clone = row.cloneNode(true)
         container.appendChild(clone)
     }
+}
+
+function paintSquares() {
+    const squares = document.querySelectorAll('.square')
+    squares.forEach(square => {
+        square.addEventListener('mouseover', () => {
+            square.classList.add('painted')
+        })
+    })
 }
