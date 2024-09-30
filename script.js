@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     btn.addEventListener('click', () => {
         size = +prompt('Enter the number of squares per side of the new grid (max 100)', '')
-        console.log(size)
 
         if (isNaN(size) || size > 100 || size !== parseInt(size)) {
             alert('The number entered is not valid')
@@ -51,7 +50,14 @@ function paintSquares() {
     const squares = document.querySelectorAll('.square')
     squares.forEach(square => {
         square.addEventListener('mouseover', () => {
-            square.classList.add('painted')
+            const r = getRandomColor()
+            const g = getRandomColor()
+            const b = getRandomColor()
+            square.style.backgroundColor = `rgb(${r}, ${g}, ${b})`
         })
     })
+}
+
+function getRandomColor() {
+    return Math.floor(Math.random() * 256)
 }
