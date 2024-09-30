@@ -6,9 +6,10 @@ document.addEventListener('DOMContentLoaded', () => {
     paintSquares()
 
     btn.addEventListener('click', () => {
-        size = +prompt('Enter the number of squares per side of the new grid (max 100)', '')
+        const MAX_SIZE = 100
+        size = +prompt(`Enter the number of squares per side of the new grid (max ${MAX_SIZE})`, '')
 
-        if (isNaN(size) || size > 100 || size !== parseInt(size)) {
+        if (isNaN(size) || size > MAX_SIZE || size !== parseInt(size)) {
             alert('The number entered is not valid')
         } else if (size !== 0) {
             removeGrid()
@@ -49,11 +50,17 @@ function displayGrid(size) {
 function paintSquares() {
     const squares = document.querySelectorAll('.square')
     squares.forEach(square => {
-        square.addEventListener('mouseover', () => {
+        square.style.opacity = 1
+        square.addEventListener('mouseenter', () => {
             const r = getRandomColor()
             const g = getRandomColor()
             const b = getRandomColor()
+            const DARKENING_SPEED = 0.1
             square.style.backgroundColor = `rgb(${r}, ${g}, ${b})`
+
+            if (square.style.opacity > 0) {
+                square.style.opacity -= DARKENING_SPEED
+            }
         })
     })
 }
